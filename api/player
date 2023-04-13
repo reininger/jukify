@@ -1,0 +1,11 @@
+# Interact with player API
+# usage: player <http verb> <action>
+# remarks: requires SPOTIFY_USER_ACCESS_TOKEN
+#    - example http verb, action pairs
+#    - PUT play
+#    - PUT pause
+#    - POST next
+#    - POST previous
+
+curl -X ${1} \
+"${SPOTIFY_API_AUTHORITY}/me/player/${2}" -H "Authorization: Bearer ${SPOTIFY_USER_ACCESS_TOKEN}"

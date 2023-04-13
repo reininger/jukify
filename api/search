@@ -1,0 +1,10 @@
+# Returns search results for a query from the Spotify API
+# usage: search <query> <types>
+# remarks:
+#   query (must be url-encoded, e.g. spaces = %20)
+#   comma separated list of types (e.g. artist,track) see Spotify API doc
+
+curl -s \
+	"https://api.spotify.com/v1/search?q=${1}&type=${2}" \
+	-H "Authorization: Bearer ${SPOTIFY_ACCESS_TOKEN}"
+

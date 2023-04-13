@@ -1,0 +1,3 @@
+
+curl "${SPOTIFY_API_AUTHORITY}/${1}" \
+	-H "Authorization: Bearer ${SPOTIFY_USER_ACCESS_TOKEN}"
