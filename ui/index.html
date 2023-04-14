@@ -11,12 +11,18 @@
 		crossorigin="anonymous"
 	/>
 	<title>Jukify</title>
+	<script src="login.js"></script>
 </head>
 
 <body class="container d-flex justify-content-center align-items-center
 flex-column">
 	<h1>Welcome to <strong>Jukify</strong>!</h1>
-	<button type="button" class="btn btn-primary btn-lg">Spotify</button>
+	<a
+	href="https://accounts.spotify.com/authorize?client_id=473db3deb60a4337bb3b087af3713160&response_type=token&redirect_uri=http://localhost:3000&scope=user-modify-playback-state%20user-read-private%20user-read-email%20user-read-playback-state">
+		<button type="button" class="btn btn-primary btn-lg login-btn">
+			Login
+		</button>
+	</a>
 </body>
 
 </html>
