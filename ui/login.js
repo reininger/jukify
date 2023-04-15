@@ -1,5 +1,5 @@
 const isExpired = expiration => {
-	return Date.now() < expiration;
+	return Date.now() >= expiration;
 };
 
 onload = async () => {
@@ -11,7 +11,7 @@ onload = async () => {
 	if (accessToken === null || isExpired(accessTokenExpiration)) {
 		const urlParams = new URLSearchParams(window.location.hash.substr(1));
 		accessToken = urlParams.get("access_token");
-		accessTokenExpiration = urlParams.get("expires_in");
+		accessTokenExpiration = urlParams.get("expires_in") * 1000 + Date.now();
 		sessionStorage.setItem("accessToken", JSON.stringify(accessToken));
 		sessionStorage.setItem("accessTokenExpiration",
 			JSON.stringify(accessTokenExpiration));
