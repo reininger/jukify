@@ -7,3 +7,8 @@ redirect_uri="http://localhost:3000"
 scope="user-modify-playback-state%20user-read-private%20user-read-email%20user-read-playback-state"
 
 open "${SPOTIFY_ACCOUNTS_BASE_URL}/authorize?client_id=${client_id}&response_type=${response_type}&redirect_uri=${redirect_uri}&scope=${scope}"
+
+echo "enter user access token:"
+read USERINPUT
+export SPOTIFY_USER_ACCESS_TOKEN=$USERINPUT
+
