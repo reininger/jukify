@@ -2,6 +2,16 @@ const isExpired = expiration => {
 	return Date.now() >= expiration;
 };
 
+const pause = async () => {
+	let accessToken = JSON.parse(sessionStorage.getItem("accessToken"));
+  const response = await fetch("https://api.spotify.com/v1/me/player/pause", {
+		method: "PUT",
+		headers: {
+			"Authorization": `Bearer ${accessToken}`
+		}
+	});
+}
+
 onload = async () => {
 	// check sessionStorage for valid access token
 	let accessToken = JSON.parse(sessionStorage.getItem("accessToken"));
