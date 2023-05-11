@@ -16,4 +16,7 @@ onload = async () => {
 		const playing = await window.player.toggle();
 		pauseButtons[0].innerText = playing ? 'Pause' : 'Play'
 	}
+
+	const nextButtons = document.getElementsByClassName("next-btn");
+	nextButtons[0].onclick = () => window.player.next()
 }
