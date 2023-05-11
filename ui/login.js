@@ -1,24 +1,19 @@
 import LoginManager from "./LoginManager.js";
-
-const pause = async () => {
-	let accessToken = JSON.parse(sessionStorage.getItem("accessToken"));
-  const response = await fetch("https://api.spotify.com/v1/me/player/pause", {
-		method: "PUT",
-		headers: {
-			"Authorization": `Bearer ${window.loginManager.user.accessToken}`
-		}
-	});
-}
+import Player from "./Player.js"
 
 onload = async () => {
-	const loginManager = new LoginManager();
+	window.loginManager = new LoginManager();
+	window.player = new Player(window.loginManager);
+
 	await loginManager.login()
-	window.loginManager = loginManager
 
 	// display user info
 	const loginButtons = document.getElementsByClassName("login-btn");
 	loginButtons[0].innerText = `Welcome ${loginManager.user.userName}!`
 
 	const pauseButtons = document.getElementsByClassName("pause-btn");
-	pauseButtons[0].onclick = () => pause();
+	pauseButtons[0].onclick = async () => {
+		const playing = await window.player.toggle();
+		pauseButtons[0].innerText = playing ? 'Pause' : 'Play'
+	}
 }
