@@ -34,6 +34,15 @@ export default class Player {
 		return playbackState
 	}
 
+	async next() {
+		const response = fetch('https://api.spotify.com/v1/me/player/next', {
+			method: "POST",
+			headers: {
+				"Authorization": 'Bearer ' + loginManager.user.accessToken
+			}
+		});
+	}
+
 	async toggle() {
 		const playing = await this.isPlaying();
 		if (playing) {
