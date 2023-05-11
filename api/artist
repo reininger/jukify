@@ -2,6 +2,6 @@
 # usage: artist <artist id>
 
 curl -s \
-	"https://api.spotify.com/v1/artists/${1}" \
+	"${SPOTIFY_API_BASE_URL}/artists/${1}" \
 	-H "Authorization: Bearer ${SPOTIFY_ACCESS_TOKEN}"
 

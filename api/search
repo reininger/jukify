@@ -5,6 +5,6 @@
 #   comma separated list of types (e.g. artist,track) see Spotify API doc
 
 curl -s \
-	"https://api.spotify.com/v1/search?q=${1}&type=${2}" \
+	"${SPOTIFY_API_BASE_URL}/search?q=${1}&type=${2}" \
 	-H "Authorization: Bearer ${SPOTIFY_ACCESS_TOKEN}"
 

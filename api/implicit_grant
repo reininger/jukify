@@ -6,5 +6,4 @@ response_type="token"
 redirect_uri="http://localhost:3000"
 scope="user-modify-playback-state%20user-read-private%20user-read-email%20user-read-playback-state"
 
-open "https://accounts.spotify.com/authorize?client_id=${client_id}&response_type=${response_type}&redirect_uri=${redirect_uri}&scope=${scope}"
-
+open "${SPOTIFY_ACCOUNTS_BASE_URL}/authorize?client_id=${client_id}&response_type=${response_type}&redirect_uri=${redirect_uri}&scope=${scope}"

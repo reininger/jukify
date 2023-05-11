@@ -7,7 +7,7 @@
 grant_type="client_credentials"
 
 json=$(curl -s \
-	"https://accounts.spotify.com/api/token" \
+	"${SPOTIFY_ACCOUNTS_BASE_URL}/api/token" \
 	-H "Content-Type: application/x-www-form-urlencoded" \
 	-d "grant_type=${grant_type}&client_id=${SPOTIFY_CLIENT_ID}&client_secret=${SPOTIFY_CLIENT_SECRET}")
 

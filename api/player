@@ -8,4 +8,4 @@
 #    - POST previous
 
 curl -X ${1} \
-"${SPOTIFY_API_AUTHORITY}/me/player/${2}" -H "Authorization: Bearer ${SPOTIFY_USER_ACCESS_TOKEN}"
+"${SPOTIFY_API_BASE_URL}/me/player/${2}" -H "Authorization: Bearer ${SPOTIFY_USER_ACCESS_TOKEN}"

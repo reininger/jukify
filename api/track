@@ -2,6 +2,6 @@
 # usage: track <trackid>
 
 curl -s \
-	"https://api.spotify.com/v1/tracks/${1}" \
+	"${SPOTIFY_API_BASE_URL}/tracks/${1}" \
 	-H "Authorization: Bearer ${SPOTIFY_ACCESS_TOKEN}"
 
