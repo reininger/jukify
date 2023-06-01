@@ -1,0 +1,15 @@
+name: Deploy to surge staging
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  deploy-to-surge-staging:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - run: npm install --global surge
+      - run: surge ./ui jukify-staging.surge.sh --token ${{ secrets.SURGE_TOKEN }}
