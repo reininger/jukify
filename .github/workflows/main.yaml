@@ -3,7 +3,7 @@ name: Deploy to surge staging
 on:
   push:
     branches:
-      - 'main'
+      - 'development'
 
 jobs:
   deploy-to-surge-staging:
