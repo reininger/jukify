@@ -14,3 +14,15 @@ test('Returns false on 401 unauthorized', async () => {
 	expect(result).toBe(false);
 });
 
+test('Tests throws an exception on non-401 error statuses', async () => {
+	const signinManager = new SpotifyImplicitGrantSigninManager();
+    signinManager.GetSpotifyUserProfile = () => {
+        unauthorizedResponse = new Response(options = {
+            status: 403,
+            statusText: 'Forbidden'
+        });
+    };
+    signinManager.accessToken = 'someRandomAccessToken1';
+
+    expect(signinManager.login).toThrow();
+});
