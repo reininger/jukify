@@ -12,6 +12,7 @@ export default class SpotifyImplicitGrantSigninManager {
      * Begins login flow.
      */
     async login() {
+        return false;
         // get user info from spotify
         // handle errors
         // set signedin user
