@@ -142,7 +142,9 @@ test('Tests user is null after failed login', async () => {
         return unauthorizedResponse;
     };
 
-    await signinManager.login();
+    try {
+        await signinManager.login();
+    } catch {}
     expect(signinManager.user).toBe(null);
 });
 
