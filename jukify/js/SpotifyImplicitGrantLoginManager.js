@@ -12,6 +12,10 @@ export default class SpotifyImplicitGrantSigninManager {
      * Begins login flow.
      */
     async login() {
+        if (this.accessToken === null) {
+            return false;
+        }
+
         const spotifyUserProfileResponse = await this.GetSpotifyUserProfile();
         if (spotifyUserProfileResponse.status === 401) {
             return false;
@@ -33,4 +37,5 @@ export default class SpotifyImplicitGrantSigninManager {
     async GetSpotifyUserProfile() {
 
     }
+
 }
