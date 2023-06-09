@@ -54,12 +54,16 @@ test('Tests returns true on 200 response', async () => {
 	expect(result).toBe(true);
 });
 
-test('Tests returns false when access token is not set', async () => {
+test('Does not call GetSpotifyUserProfile when accessToken is null', async () => {
     const signinManager = new SpotifyImplicitGrantSigninManager();
+    let calledGetSpotifyUserProfile = false;
     signinManager.UpdateAuthenticationArguments = () => {
         signinManager.accessToken = null;
     }
+    signinManager.GetSpotifyUserProfile = async () => {
+        calledGetSpotifyUserProfile = true;
+    }
 
-    const result = await signinManager.login();
-    expect(result).toBe(false);
+    await signinManager.login();
+    expect(calledGetSpotifyUserProfile).toBe(false);
 })
