@@ -15,6 +15,8 @@ export default class SpotifyImplicitGrantSigninManager {
      * bad access token. Throws on server errors.
      */
     async login() {
+        this.user = null;
+
         this.UpdateAuthenticationArguments();
         if ([
             this.accessToken === null,
