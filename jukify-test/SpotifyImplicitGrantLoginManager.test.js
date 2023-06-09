@@ -168,3 +168,17 @@ test('Tests throws exception on login if a user is already logged in', async () 
         .rejects
         .toThrow();
 })
+
+test('Tests user and authentication args are null after logout', async () => {
+	const signinManager = new SpotifyImplicitGrantSigninManager();
+    signinManager.user = { email: "test@email.com" };
+    signinManager.accessToken = 'someRandomAccessToken1';
+    signinManager.accessTokenExpirationTime = '1';
+
+    signinManager.logout();
+    expect([
+        signinManager.user,
+        signinManager.accessToken,
+        signinManager.accessTokenExpirationTime
+    ].some(x => x !== null)).toBe(false);
+}) 
