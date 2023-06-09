@@ -19,6 +19,10 @@ test('Returns false on 401 unauthorized', async () => {
 
 test('Tests throws an exception on non-401 error statuses', async () => {
 	const signinManager = new SpotifyImplicitGrantSigninManager();
+    signinManager.UpdateAuthenticationArguments = () => {
+        signinManager.accessToken = 'someRandomAccessToken1';
+        signinManager.accessTokenExpirationTime = '1';
+    }
     signinManager.GetSpotifyUserProfile = async () => {
         const unauthorizedResponse = new Response(null, options = {
             status: 403,
@@ -27,7 +31,6 @@ test('Tests throws an exception on non-401 error statuses', async () => {
 
         return unauthorizedResponse;
     };
-    signinManager.accessToken = 'someRandomAccessToken1';
 
     await expect(signinManager.login())
         .rejects
