@@ -31,6 +31,9 @@ export default class SpotifyImplicitGrantSigninManager {
             throw new Error('Fatal error getting Spotify user profile')
         }
 
+        const userProfile = await spotifyUserProfileResponse.json();
+        this.user = userProfile;
+
         return true;
     }
 
