@@ -103,3 +103,25 @@ test('Tests does not call GetSpotifyUserProfile when accessTokenExpirationTime i
     await signinManager.login();
     expect(calledGetSpotifyUserProfile).toBe(false);
 });
+
+test('Tests user is set on successful spotify api call', async () => {
+    const signinManager = new SpotifyImplicitGrantSigninManager();
+    signinManager.UpdateAuthenticationArguments = () => {
+        signinManager.accessToken = 'valid'
+        signinManager.accessTokenExpirationTime = '1'
+    }
+
+    signinManager.GetSpotifyUserProfile = async () => {
+        const authorizedResponse = new Response(JSON.stringify({
+            email: "test@email.com"
+        }), {
+            status: 200,
+            statusText: 'Ok'
+        });
+        
+        return authorizedResponse;
+    }
+
+    await signinManager.login();
+	expect(signinManager.user).toBeTruthy();
+});
