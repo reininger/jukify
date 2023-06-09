@@ -1,11 +1,12 @@
+import { Response } from "node-fetch";
 import SpotifyImplicitGrantSigninManager from "../jukify/js/SpotifyImplicitGrantLoginManager";
 
 test('Returns false on 401 unauthorized', async () => {
 	const signinManager = new SpotifyImplicitGrantSigninManager();
     signinManager.GetSpotifyUserProfile = async () => {
-        const unauthorizedResponse = new Response(options = {
+        const unauthorizedResponse = new Response(null, {
             status: 401,
-            statusText: Unauthorized
+            statusText: 'Unauthorized'
         });
 
         return unauthorizedResponse;
@@ -19,7 +20,7 @@ test('Returns false on 401 unauthorized', async () => {
 test('Tests throws an exception on non-401 error statuses', async () => {
 	const signinManager = new SpotifyImplicitGrantSigninManager();
     signinManager.GetSpotifyUserProfile = async () => {
-        const unauthorizedResponse = new Response(options = {
+        const unauthorizedResponse = new Response(null, options = {
             status: 403,
             statusText: 'Forbidden'
         });
@@ -28,5 +29,7 @@ test('Tests throws an exception on non-401 error statuses', async () => {
     };
     signinManager.accessToken = 'someRandomAccessToken1';
 
-    expect(signinManager.login).toThrow();
+    await expect(signinManager.login())
+        .rejects
+        .toThrow();
 });
