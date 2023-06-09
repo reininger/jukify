@@ -49,7 +49,9 @@ export default class SpotifyImplicitGrantSigninManager {
      * Begins logout flow.
      */
     async logout() {
-        
+        this.user = null;
+        this.accessToken = null;
+        this.accessTokenExpirationTime = null;
     }
 
     /**
