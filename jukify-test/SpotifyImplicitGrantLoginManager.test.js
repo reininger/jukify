@@ -36,7 +36,9 @@ test('Tests throws an exception on non-401 error statuses', async () => {
 
 test('Tests returns false when access token is not set', async () => {
     const signinManager = new SpotifyImplicitGrantSigninManager();
-    signinManager.accessToken = null;
+    signinManager.UpdateAuthenticationArguments = () => {
+        signinManager.accessToken = null;
+    }
 
     const result = await signinManager.login();
     expect(result).toBe(false);

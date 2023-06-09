@@ -34,6 +34,13 @@ export default class SpotifyImplicitGrantSigninManager {
         
     }
 
+    /**
+     * Sets access token and expiration time.
+     */
+    UpdateAuthenticationArguments() {
+
+    }
+
     async GetSpotifyUserProfile() {
 
     }
