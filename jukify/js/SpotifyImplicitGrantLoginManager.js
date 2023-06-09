@@ -12,6 +12,7 @@ export default class SpotifyImplicitGrantSigninManager {
      * Begins login flow.
      */
     async login() {
+        this.UpdateAuthenticationArguments();
         if (this.accessToken === null) {
             return false;
         }
@@ -22,6 +23,8 @@ export default class SpotifyImplicitGrantSigninManager {
         } else if (!spotifyUserProfileResponse.ok) {
             throw new Error('Fatal error getting Spotify user profile')
         }
+
+        return true;
         // get user info from spotify
         // handle errors
         // set signedin user
