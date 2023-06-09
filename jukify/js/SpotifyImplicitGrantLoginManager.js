@@ -13,29 +13,25 @@ export default class SpotifyImplicitGrantSigninManager {
      */
     async login() {
         this.UpdateAuthenticationArguments();
-        if (this.accessToken === null) {
-            return false;
-        }
-
-        if (this.accessTokenExpirationTime === null) {
-            return false;
-        }
-
-        if (this.IsExpired()) {
+        if ([
+            this.accessToken === null,
+            this.accessTokenExpirationTime === null,
+            this.IsExpired()
+        ].some(x => x)) {
             return false;
         }
 
         const spotifyUserProfileResponse = await this.GetSpotifyUserProfile();
+
         if (spotifyUserProfileResponse.status === 401) {
             return false;
-        } else if (!spotifyUserProfileResponse.ok) {
+        } 
+        
+        if (!spotifyUserProfileResponse.ok) {
             throw new Error('Fatal error getting Spotify user profile')
         }
 
         return true;
-        // get user info from spotify
-        // handle errors
-        // set signedin user
     }
 
     /**
