@@ -12,7 +12,12 @@ export default class SpotifyImplicitGrantSigninManager {
      * Begins login flow.
      */
     async login() {
-        return false;
+        const spotifyUserProfileResponse = await this.GetSpotifyUserProfile();
+        if (spotifyUserProfileResponse.status === 401) {
+            return false;
+        } else if (!spotifyUserProfileResponse.ok) {
+            throw new Error('Fatal error getting Spotify user profile')
+        }
         // get user info from spotify
         // handle errors
         // set signedin user
