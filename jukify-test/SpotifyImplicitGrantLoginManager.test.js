@@ -45,7 +45,7 @@ test('Tests returns true on 200 response', async () => {
     }
 
     signinManager.GetSpotifyUserProfile = async () => {
-        const authorizedResponse = new Response(null, {
+        const authorizedResponse = new Response(JSON.stringify({}), {
             status: 200,
             statusText: 'Ok'
         });
