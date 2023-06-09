@@ -125,3 +125,23 @@ test('Tests user is set on successful spotify api call', async () => {
     await signinManager.login();
 	expect(signinManager.user).toBeTruthy();
 });
+
+test('Tests user is null after failed login', async () => {
+	const signinManager = new SpotifyImplicitGrantSigninManager();
+    signinManager.user = { email: "test@email.com" };
+    signinManager.UpdateAuthenticationArguments = () => {
+        signinManager.accessToken = 'someRandomAccessToken1';
+        signinManager.accessTokenExpirationTime = '1';
+    }
+    signinManager.GetSpotifyUserProfile = async () => {
+        const unauthorizedResponse = new Response(null, {
+            status: 401,
+            statusText: 'Unauthorized'
+        });
+
+        return unauthorizedResponse;
+    };
+
+    await signinManager.login();
+    expect(signinManager.user).toBe(null);
+});
