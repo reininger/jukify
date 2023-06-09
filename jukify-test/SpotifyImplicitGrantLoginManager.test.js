@@ -145,3 +145,24 @@ test('Tests user is null after failed login', async () => {
     await signinManager.login();
     expect(signinManager.user).toBe(null);
 });
+
+test('Tests throws exception on login if a user is already logged in', async () => {
+	const signinManager = new SpotifyImplicitGrantSigninManager();
+    signinManager.user = { email: "test@email.com" };
+    signinManager.UpdateAuthenticationArguments = () => {
+        signinManager.accessToken = 'someRandomAccessToken1';
+        signinManager.accessTokenExpirationTime = '1';
+    }
+    signinManager.GetSpotifyUserProfile = () => {
+        const authorizedResponse = new Response(JSON.stringify({}), {
+            status: 200,
+            statusText: 'Ok'
+        });
+        
+        return authorizedResponse;
+    }
+
+    await expect(signinManager.login())
+        .rejects
+        .toThrow();
+})
