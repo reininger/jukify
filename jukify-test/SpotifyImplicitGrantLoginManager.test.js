@@ -34,6 +34,26 @@ test('Tests throws an exception on non-401 error statuses', async () => {
         .toThrow();
 });
 
+test('Tests returns true on 200 response', async () => {
+    const signinManager = new SpotifyImplicitGrantSigninManager();
+    signinManager.UpdateAuthenticationArguments = () => {
+        signinManager.accessToken = 'valid'
+        signinManager.accessTokenExpirationTime = '1'
+    }
+
+    signinManager.GetSpotifyUserProfile = async () => {
+        const authorizedResponse = new Response(null, {
+            status: 200,
+            statusText: 'Ok'
+        });
+        
+        return authorizedResponse;
+    }
+
+    const result = await signinManager.login();
+	expect(result).toBe(true);
+});
+
 test('Tests returns false when access token is not set', async () => {
     const signinManager = new SpotifyImplicitGrantSigninManager();
     signinManager.UpdateAuthenticationArguments = () => {
