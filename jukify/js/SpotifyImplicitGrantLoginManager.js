@@ -51,6 +51,11 @@ export default class SpotifyImplicitGrantSigninManager {
 
     }
 
+    /**
+     * Calls Spotify API to get user profile.
+     * 
+     * Returns a Response object.
+     */
     async GetSpotifyUserProfile() {
 
     }
