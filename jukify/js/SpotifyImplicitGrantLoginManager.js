@@ -21,6 +21,10 @@ export default class SpotifyImplicitGrantSigninManager {
             return false;
         }
 
+        if (this.IsExpired()) {
+            return false;
+        }
+
         const spotifyUserProfileResponse = await this.GetSpotifyUserProfile();
         if (spotifyUserProfileResponse.status === 401) {
             return false;
