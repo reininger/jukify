@@ -67,3 +67,18 @@ test('Does not call GetSpotifyUserProfile when accessToken is null', async () =>
     await signinManager.login();
     expect(calledGetSpotifyUserProfile).toBe(false);
 })
+
+test('Does not call GetSpotifyUserProfile when accessTokenExpirationTime is null', async () => {
+    const signinManager = new SpotifyImplicitGrantSigninManager();
+    let calledGetSpotifyUserProfile = false;
+    signinManager.UpdateAuthenticationArguments = () => {
+        signinManager.accessTokenExpirationTime = null;
+        signinManager.accessToken = 'invalid'
+    }
+    signinManager.GetSpotifyUserProfile = async () => {
+        calledGetSpotifyUserProfile = true;
+    }
+
+    await signinManager.login();
+    expect(calledGetSpotifyUserProfile).toBe(false);
+})
