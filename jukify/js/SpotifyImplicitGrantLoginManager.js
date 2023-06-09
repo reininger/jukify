@@ -10,6 +10,9 @@ export default class SpotifyImplicitGrantSigninManager {
 
     /**
      * Begins login flow.
+     * 
+     * Returns true on successful login. Returns false on failed login due to
+     * bad access token. Throws on server errors.
      */
     async login() {
         this.UpdateAuthenticationArguments();
