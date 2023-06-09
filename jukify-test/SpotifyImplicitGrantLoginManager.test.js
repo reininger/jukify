@@ -24,7 +24,7 @@ test('Tests throws an exception on non-401 error statuses', async () => {
         signinManager.accessTokenExpirationTime = '1';
     }
     signinManager.GetSpotifyUserProfile = async () => {
-        const unauthorizedResponse = new Response(null, options = {
+        const unauthorizedResponse = new Response(null, {
             status: 403,
             statusText: 'Forbidden'
         });
