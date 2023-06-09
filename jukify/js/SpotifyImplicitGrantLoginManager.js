@@ -19,7 +19,6 @@ export default class SpotifyImplicitGrantSigninManager {
             this.user = null;
             throw new Error('Cannot call login when a user is already logged in');
         }
-        this.user = null;
 
         this.UpdateAuthenticationArguments();
         if ([
