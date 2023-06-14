@@ -17,6 +17,7 @@ jobs:
       - run: surge ./jukify jukify-staging.surge.sh --token ${{ secrets.SURGE_TOKEN }}
 
   deploy-to-surge-staging:
+    needs: test
     runs-on: ubuntu-latest
 
     steps:
