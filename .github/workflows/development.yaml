@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'development'
+      - 'test'
 
 jobs:
   test:
@@ -20,5 +21,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: npm install --global surge
-      - run: surge ./jukify jukify-staging.surge.sh --token ${{ secrets.SURGE_TOKEN }}
 
