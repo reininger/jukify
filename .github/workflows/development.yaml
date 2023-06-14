@@ -6,6 +6,14 @@ on:
       - 'development'
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - run: npm test
+      - run: surge ./jukify jukify-staging.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+
   deploy-to-surge-staging:
     runs-on: ubuntu-latest
 
