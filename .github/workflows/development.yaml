@@ -12,6 +12,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - run: npm install
       - run: npm test
       - run: surge ./jukify jukify-staging.surge.sh --token ${{ secrets.SURGE_TOKEN }}
 
