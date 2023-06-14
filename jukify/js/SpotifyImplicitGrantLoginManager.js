@@ -29,17 +29,17 @@ export default class SpotifyImplicitGrantSigninManager {
             return false;
         }
 
-        const spotifyUserProfileResponse = await this.GetSpotifyUserProfile();
+        const response = await this.GetSpotifyUserProfile();
 
-        if (spotifyUserProfileResponse.status === 401) {
+        if (response.status === 401) {
             return false;
         } 
         
-        if (!spotifyUserProfileResponse.ok) {
+        if (!response.ok) {
             throw new Error('Fatal error getting Spotify user profile')
         }
 
-        const userProfile = await spotifyUserProfileResponse.json();
+        const userProfile = await response.json();
         this.user = userProfile;
 
         return true;
