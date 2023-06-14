@@ -3,6 +3,7 @@ import SpotifyImplicitGrantSigninManager from "../jukify/js/SpotifyImplicitGrant
 
 test('Returns false on 401 unauthorized', async () => {
 	const signinManager = new SpotifyImplicitGrantSigninManager();
+    signinManager.UpdateAuthenticationArguments = () => null;
     signinManager.GetSpotifyUserProfile = async () => {
         const unauthorizedResponse = new Response(null, {
             status: 401,

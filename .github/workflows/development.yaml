@@ -6,11 +6,19 @@ on:
       - 'development'
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - run: npm install
+      - run: npm test
+
   deploy-to-surge-staging:
+    needs: test
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
       - run: npm install --global surge
       - run: surge ./jukify jukify-staging.surge.sh --token ${{ secrets.SURGE_TOKEN }}
-
