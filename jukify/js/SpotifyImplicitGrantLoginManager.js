@@ -58,7 +58,9 @@ export default class SpotifyImplicitGrantSigninManager {
      * Sets access token and expiration time.
      */
     UpdateAuthenticationArguments() {
-
+        const urlParams = new URLSearchParams(window.location.hash.substr(1));
+        this.accessToken = urlParams.get("access_token");
+        this.accessTokenExpirationTime = urlParams.get("expires_in") * 1000 + Date.now();
     }
 
     /**
