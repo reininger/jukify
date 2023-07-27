@@ -4,32 +4,129 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width initial-scale=1.0" />
-	<link
-		rel="stylesheet"
-		href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-		integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-		crossorigin="anonymous"
-	/>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+		integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
 	<title>Jukify</title>
 	<script type="module" src="./js/login.js"></script>
+
+	<style>
+		*::-webkit-scrollbar {
+			display: none;
+		}
+	</style>
 </head>
 
-<body class="container d-flex justify-content-center align-items-center
-flex-column">
-	<h1>Welcome to <strong>Jukify</strong>!</h1>
-	<a
-	href="https://accounts.spotify.com/authorize?client_id=473db3deb60a4337bb3b087af3713160&response_type=token&redirect_uri=http://localhost:3000&scope=user-modify-playback-state%20user-read-private%20user-read-email%20user-read-playback-state">
-		<button class="btn btn-primary btn-lg login-btn">
-			Login
+<body class="d-flex justify-content-between flex-column p-0 vh-100">
+	<header class="d-flex justify-content-between align-items-center bg-primary text-white p-3">
+		<h2 class="m-0">Jukify</h2>
+		<div class="d-flex align-items-center">
+			<svg class="m-1" width="20" height="20" xmlis="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="person">
+				<g data-name="Layer 2">
+					<path d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm6 10a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z"
+						data-name="person"></path>
+				</g>
+			</svg>
+			<h4 class="m-0">Reid Reininger</h4>
+		</div>
+	</header>
+
+	<main class="overflow-hidden flex-grow-1 d-flex flex-column justify-content-between p-1">
+
+		<div class="flex-grow-1 tab-content d-flex flex-column overflow-hidden" id="myTabContent">
+			<div class="tab-pane flex-grow-1 fade show active d-flex flex-column overflow-hidden" id="home" role="tabpanel"
+				aria-labelledby="home-tab">
+				<div class="input-group mb-1">
+					<input type="text" class="form-control" placeholder="Search" aria-label="Search">
+					<button class="input-group-text btn btn-success">
+						<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="search">
+							<g data-name="Layer 2">
+								<path fill="white"
+									d="m20.71 19.29-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8 7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 11a6 6 0 1 1 6 6 6 6 0 0 1-6-6z"
+									data-name="search"></path>
+							</g>
+						</svg>
+					</button>
+				</div>
+				<ul class="p-0 m-0 flex-shrink-1 overflow-scroll">
+					<li class="p-0 list-group-item d-flex align-items-end">
+						<img height="50" width="50" class="me-2">
+						<h6 class="m-0">Fireworks by Katy Perry</h6>
+					</li>
+					<li class="p-0 list-group-item d-flex align-items-end">
+						<img height="50" width="50" class="me-2">
+						<h6 class="m-0">Fireworks by Katy Perry</h6>
+					</li>
+					<li class="p-0 list-group-item d-flex align-items-end">
+						<img height="50" width="50" class="me-2">
+						<h6 class="m-0">Fireworks by Katy Perry</h6>
+					</li>
+					<li class="p-0 list-group-item d-flex align-items-end">
+						<img height="50" width="50" class="me-2">
+						<h6 class="m-0">Fireworks by Katy Perry</h6>
+					</li>
+					<li class="p-0 list-group-item d-flex align-items-end">
+						<img height="50" width="50" class="me-2">
+						<h6 class="m-0">Fireworks by Katy Perry</h6>
+					</li>
+					<li class="p-0 list-group-item d-flex align-items-end">
+						<img height="50" width="50" class="me-2">
+						<h6 class="m-0">Fireworks by Katy Perry</h6>
+					</li>
+					<li class="p-0 list-group-item d-flex align-items-end">
+						<img height="50" width="50" class="me-2">
+						<h6 class="m-0">Fireworks by Katy Perry</h6>
+					</li>
+				</ul>
+			</div>
+
+			<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">Playlist Tab Content
+			</div>
+		</div>
+
+
+	</main>
+
+	<footer class="d-flex flex-column">
+		<ul class="nav nav-pills nav-fill">
+			<li class="nav-item">
+				<a class="nav-link active" aria-current="page" href="#">Search</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">Playlist</a>
+			</li>
+		</ul>
+		<button class="btn btn-lg pause-btn bg-light">
+			<div>
+				<h6>Fireworks by Katy Perry</h6>
+			</div>
+			<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" id="skip-previous">
+				<path
+					d="M7 6c.55 0 1 .45 1 1v10c0 .55-.45 1-1 1s-1-.45-1-1V7c0-.55.45-1 1-1zm3.66 6.82l5.77 4.07c.66.47 1.58-.01 1.58-.82V7.93c0-.81-.91-1.28-1.58-.82l-5.77 4.07c-.57.4-.57 1.24 0 1.64z">
+				</path>
+			</svg>
+			<svg width="45" height="45" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 100 100"
+				viewBox="0 0 100 100" id="play-button">
+				<switch>
+					<g>
+						<path
+							d="M5273.1,2400.1v-2c0-2.8-5-4-9.7-4s-9.7,1.3-9.7,4v2c0,1.8,0.7,3.6,2,4.9l5,4.9c0.3,0.3,0.4,0.6,0.4,1v6.4
+				c0,0.4,0.2,0.7,0.6,0.8l2.9,0.9c0.5,0.1,1-0.2,1-0.8v-7.2c0-0.4,0.2-0.7,0.4-1l5.1-5C5272.4,2403.7,5273.1,2401.9,5273.1,2400.1z
+				M5263.4,2400c-4.8,0-7.4-1.3-7.5-1.8v0c0.1-0.5,2.7-1.8,7.5-1.8c4.8,0,7.3,1.3,7.5,1.8C5270.7,2398.7,5268.2,2400,5263.4,2400z">
+						</path>
+						<path
+							d="M5268.4 2410.3c-.6 0-1 .4-1 1 0 .6.4 1 1 1h4.3c.6 0 1-.4 1-1 0-.6-.4-1-1-1H5268.4zM5272.7 2413.7h-4.3c-.6 0-1 .4-1 1 0 .6.4 1 1 1h4.3c.6 0 1-.4 1-1C5273.7 2414.1 5273.3 2413.7 5272.7 2413.7zM5272.7 2417h-4.3c-.6 0-1 .4-1 1 0 .6.4 1 1 1h4.3c.6 0 1-.4 1-1C5273.7 2417.5 5273.3 2417 5272.7 2417zM50 2.5C23.8 2.5 2.5 23.8 2.5 50c0 26.2 21.3 47.5 47.5 47.5 26.2 0 47.5-21.3 47.5-47.5C97.5 23.8 76.2 2.5 50 2.5zM67.2 52.8L41.6 69.8c-2.2 1.5-5.1-.1-5.1-2.8V32.9c0-2.6 2.9-4.2 5.1-2.8l25.6 17.1C69.2 48.6 69.2 51.4 67.2 52.8z">
+						</path>
+					</g>
+				</switch>
+			</svg>
+			<!-- <svg width="54" height="54" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="pause"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14c-.55 0-1-.45-1-1V9c0-.55.45-1 1-1s1 .45 1 1v6c0 .55-.45 1-1 1zm4 0c-.55 0-1-.45-1-1V9c0-.55.45-1 1-1s1 .45 1 1v6c0 .55-.45 1-1 1z"></path></svg> -->
+			<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" id="skip-next">
+				<path
+					d="M7.58 16.89l5.77-4.07c.56-.4.56-1.24 0-1.63L7.58 7.11C6.91 6.65 6 7.12 6 7.93v8.14c0 .81.91 1.28 1.58.82zM16 7v10c0 .55.45 1 1 1s1-.45 1-1V7c0-.55-.45-1-1-1s-1 .45-1 1z">
+				</path>
+			</svg>
 		</button>
-	</a>
-	<button class="btn btn-secondary btn-lg pause-btn">
-		Play/Pause
-	</button>
-	<button class="btn btn-secondary btn-lg next-btn">
-		Next
-	</button>
+	</footer>
 </body>
 
 </html>
-
