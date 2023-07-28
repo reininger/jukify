@@ -73,9 +73,10 @@ export default class SpotifyImplicitGrantSigninManager {
 		const response = await fetch(url, {
 			method: "GET",
 			headers: {
-				"Authorization": `Bearer ${accessToken}`
+				"Authorization": `Bearer ${this.accessToken}`
 			}
 		});
+        return response;
     }
 
     IsExpired() {
