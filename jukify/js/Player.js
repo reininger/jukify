@@ -38,7 +38,7 @@ export default class Player {
 	}
 
 	async next() {
-		const response = fetch('https://api.spotify.com/v1/me/player/next', {
+		const response = await fetch('https://api.spotify.com/v1/me/player/next', {
 			method: "POST",
 			headers: {
 				"Authorization": 'Bearer ' + loginManager.accessToken
