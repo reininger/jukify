@@ -29,6 +29,9 @@ export default class Player {
 				"Authorization": 'Bearer ' + loginManager.accessToken
 			}
 		});
+		if (response.status == 204) {
+			return false;
+		}
 		const json = await response.json();
 		const playbackState = json.is_playing;
 		return playbackState
