@@ -12,6 +12,8 @@ window.onload = async () => {
     const pauseButton = document.getElementById("pause");
     const playButton = document.getElementById("play");
     const nameNode = document.querySelector("header h4");
+		const skipPreviousButton = document.querySelector("#skip-previous");
+		const skipNextButton = document.querySelector("#skip-next");
 
     let result;
     try {
@@ -41,6 +43,10 @@ window.onload = async () => {
         await window.player.play();
         setPlayPauseButton();
     }
+
+		skipNextButton.onclick = async () => {
+				await window.player.next();
+		}
 
     setPlayPauseButton();
 
