@@ -46,6 +46,15 @@ export default class Player {
 		});
 	}
 
+	async previous() {
+		const response = await fetch('https://api.spotify.com/v1/me/player/previous', {
+			method: "POST",
+			headers: {
+				"Authorization": 'Bearer ' + loginManager.accessToken
+			}
+		});
+	}
+
 	async toggle() {
 		const playing = await this.isPlaying();
 		if (playing) {
