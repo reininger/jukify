@@ -18,15 +18,15 @@
 <body class="vh-100 d-flex justify-content-center align-items-center
 flex-column">
     <h1>Welcome to Jukify!</h1>
-	<a class="btn btn-primary btn-lg login-btn" role="button" type="button">
+	<button class="btn btn-primary btn-lg login-btn" role="button" type="button">
 			Login
-	</a>
+	</button>
 </body>
 <script>
 	window.onload = () => {
 		const url = window.location.protocol + '//' + window.location.host;
-		const loginButton = document.querySelector("a");
-		loginButton.href = `https://accounts.spotify.com/authorize?client_id=473db3deb60a4337bb3b087af3713160&response_type=token&redirect_uri=${url}&scope=user-modify-playback-state%20user-read-private%20user-read-email%20user-read-playback-state`;
+		const loginButton = document.querySelector("button");
+		loginButton.onclick = () => window.location.href = `https://accounts.spotify.com/authorize?client_id=473db3deb60a4337bb3b087af3713160&response_type=token&redirect_uri=${url}&scope=user-modify-playback-state%20user-read-private%20user-read-email%20user-read-playback-state`;
 	}
 </script>
 </html>
