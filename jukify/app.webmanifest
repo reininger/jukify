@@ -1,3 +1,5 @@
 {
-	"name": "Jukify"
+	"name": "Jukify",
+	"display": "standalone",
+	"orientation": "portrait"
 }
