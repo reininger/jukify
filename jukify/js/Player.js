@@ -8,7 +8,7 @@ export default class Player {
 		const response = fetch('https://api.spotify.com/v1/me/player/play', {
 			method: "PUT",
 			headers: {
-				"Authorization": 'Bearer ' + loginManager.user.accessToken
+				"Authorization": 'Bearer ' + this.loginManager.accessToken
 			}
 		});
 	}
@@ -17,7 +17,7 @@ export default class Player {
 		const response = fetch('https://api.spotify.com/v1/me/player/pause', {
 			method: "PUT",
 			headers: {
-				"Authorization": 'Bearer ' + loginManager.user.accessToken
+				"Authorization": 'Bearer ' + this.loginManager.accessToken
 			}
 		});
 	}
@@ -26,7 +26,7 @@ export default class Player {
 		const response = await fetch('https://api.spotify.com/v1/me/player', {
 			method: "GET",
 			headers: {
-				"Authorization": 'Bearer ' + loginManager.user.accessToken
+				"Authorization": 'Bearer ' + loginManager.accessToken
 			}
 		});
 		const json = await response.json();
@@ -38,7 +38,7 @@ export default class Player {
 		const response = fetch('https://api.spotify.com/v1/me/player/next', {
 			method: "POST",
 			headers: {
-				"Authorization": 'Bearer ' + loginManager.user.accessToken
+				"Authorization": 'Bearer ' + loginManager.accessToken
 			}
 		});
 	}
