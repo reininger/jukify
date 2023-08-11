@@ -48,6 +48,10 @@ window.onload = async () => {
 				await window.player.next();
 		}
 
+		skipPreviousButton.onclick = async() => {
+			await window.player.previous();
+		}
+
     setPlayPauseButton();
 
     //const nextButtons = document.getElementsByClassName("next-btn");
