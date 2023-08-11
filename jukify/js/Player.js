@@ -5,7 +5,7 @@ export default class Player {
 	}
 
 	async play() {
-		const response = fetch('https://api.spotify.com/v1/me/player/play', {
+		const response = await fetch('https://api.spotify.com/v1/me/player/play', {
 			method: "PUT",
 			headers: {
 				"Authorization": 'Bearer ' + this.loginManager.accessToken
@@ -14,7 +14,7 @@ export default class Player {
 	}
 
 	async pause() {
-		const response = fetch('https://api.spotify.com/v1/me/player/pause', {
+		const response = await fetch('https://api.spotify.com/v1/me/player/pause', {
 			method: "PUT",
 			headers: {
 				"Authorization": 'Bearer ' + this.loginManager.accessToken
