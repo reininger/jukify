@@ -1,5 +1,5 @@
 {
 	"name": "Jukify",
-	"display": "fullscreen",
+	"display": "standalone",
 	"orientation": "portrait"
 }
