@@ -8,7 +8,8 @@
 
 	<link
 		rel="stylesheet"
-		href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+	
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
 		integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 		crossorigin="anonymous"
 	/>
@@ -25,7 +26,8 @@ flex-column">
 	window.onload = () => {
 		const url = window.location.protocol + '//' + window.location.host;
 		const loginButton = document.querySelector("button");
-		loginButton.onclick = () => window.location.href = `https://accounts.spotify.com/authorize?client_id=473db3deb60a4337bb3b087af3713160&response_type=token&redirect_uri=${url}&scope=user-modify-playback-state%20user-read-private%20user-read-email%20user-read-playback-state`;
+		loginButton.onclick = () => window.location.href =
+		`https://accounts.spotify.com/authorize?client_id=473db3deb60a4337bb3b087af3713160&response_type=token&redirect_uri=${url}&scope=user-modify-playback-state%20user-read-private%20user-read-email%20user-read-playback-state%20user-read-currently-playing`;
 	}
 </script>
 </html>

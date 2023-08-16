@@ -3,7 +3,7 @@
  */
 
 import Player from "./Player.js";
-import LoginManager from "./SpotifyImplicitGrantLoginManager.js"
+import LoginManager from "./SpotifyImplicitGrantLoginManager.js";
 
 window.onload = async () => {
     window.loginManager = new LoginManager();
@@ -14,6 +14,7 @@ window.onload = async () => {
     const nameNode = document.querySelector("header h4");
 		const skipPreviousButton = document.querySelector("#skip-previous");
 		const skipNextButton = document.querySelector("#skip-next");
+		const currentlyPlaying = document.querySelector(".currently-playing");
 
     let result;
     try {
@@ -51,6 +52,15 @@ window.onload = async () => {
 		skipPreviousButton.onclick = async() => {
 			await window.player.previous();
 		}
+
+		window.player.nowPlayingChanged.push(() => {		
+			let nowPlaying = '-'
+			if (window.player.nowPlaying) {
+				const { item: { name, artists, duration_ms }, progress_ms } = window.player.nowPlaying;
+				nowPlaying = `${name} - ${artists[0]?.name} - ${Math.round(progress_ms / 1000)} / ${Math.round(duration_ms / 1000)}`;
+			}
+			currentlyPlaying.innerText = nowPlaying;
+		});
 
     setPlayPauseButton();
 

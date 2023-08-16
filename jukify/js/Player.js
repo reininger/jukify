@@ -1,7 +1,16 @@
 export default class Player {
 
-	constructor(loginManager) {
-		this.loginManager = loginManager
+	constructor(loginManager, pollRate = 1) {
+		this.loginManager = loginManager;
+		this._pollRate = pollRate;
+		this._pollIntervalId;
+
+		// list of callbacks when nowPlaying changes
+		this.nowPlayingChanged = [];
+
+		// now playing object returned by spotify
+		this.nowPlaying = null;
+		this._pollNowPlaying(this.pollRate);
 	}
 
 	async play() {
@@ -64,5 +73,30 @@ export default class Player {
 			this.play();
 			return true;
 		}
+	}
+
+	async _nowPlaying() {
+		const response = await fetch('https://api.spotify.com/v1/me/player/currently-playing', {
+			method: "GET",
+			headers: {
+				"Authorization": 'Bearer ' + loginManager.accessToken
+			}
+		});
+		if (response.status != 200) {
+			return null;
+		}
+		const json = await response.json();
+		return json;
+	}
+
+	_pollNowPlaying(pollRate) {
+		const s2ms = 1000;
+		this.pollIntervalId = setInterval(async () => {
+			const nowPlaying = await this._nowPlaying();
+			this.nowPlaying = nowPlaying;
+			this.nowPlayingChanged.forEach(callback => {
+				callback();
+			});
+		}, s2ms * this._pollRate);
 	}
 }
