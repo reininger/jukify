@@ -85,7 +85,6 @@ window.onload = async () => {
 				</li>
 			`);
 			searchResults.innerHTML = resultListItems.join('');
-			console.log(searchResults.innerHTML);
 		};
 
     setPlayPauseButton();
