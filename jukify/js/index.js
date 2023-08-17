@@ -4,10 +4,12 @@
 
 import Player from "./Player.js";
 import LoginManager from "./SpotifyImplicitGrantLoginManager.js";
+import SpotifyClient from "./SpotifyClient.js";
 
 window.onload = async () => {
     window.loginManager = new LoginManager();
-    window.player = new Player(window.loginManager);
+		window.spotifyClient = new SpotifyClient(window.fetch, window.loginManager);
+    window.player = new Player(window.spotifyClient);
     
     const pauseButton = document.getElementById("pause");
     const playButton = document.getElementById("play");

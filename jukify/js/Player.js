@@ -1,7 +1,7 @@
 export default class Player {
 
-	constructor(loginManager, pollRate = 1) {
-		this.loginManager = loginManager;
+	constructor(client, pollRate = 1) {
+		this._client = client;
 		this._pollRate = pollRate;
 		this._pollIntervalId;
 
@@ -14,29 +14,20 @@ export default class Player {
 	}
 
 	async play() {
-		const response = await fetch('https://api.spotify.com/v1/me/player/play', {
+		const response = await this._client.fetch('me/player/play', {
 			method: "PUT",
-			headers: {
-				"Authorization": 'Bearer ' + this.loginManager.accessToken
-			}
 		});
 	}
 
 	async pause() {
-		const response = await fetch('https://api.spotify.com/v1/me/player/pause', {
+		const response = await this._client.fetch('me/player/pause', {
 			method: "PUT",
-			headers: {
-				"Authorization": 'Bearer ' + this.loginManager.accessToken
-			}
 		});
 	}
 
 	async isPlaying() {
-		const response = await fetch('https://api.spotify.com/v1/me/player', {
+		const response = await this._client.fetch('me/player', {
 			method: "GET",
-			headers: {
-				"Authorization": 'Bearer ' + loginManager.accessToken
-			}
 		});
 		if (response.status == 204) {
 			return false;
@@ -47,20 +38,14 @@ export default class Player {
 	}
 
 	async next() {
-		const response = await fetch('https://api.spotify.com/v1/me/player/next', {
+		const response = await this._client.fetch('me/player/next', {
 			method: "POST",
-			headers: {
-				"Authorization": 'Bearer ' + loginManager.accessToken
-			}
 		});
 	}
 
 	async previous() {
-		const response = await fetch('https://api.spotify.com/v1/me/player/previous', {
+		const response = await this._client.fetch('me/player/previous', {
 			method: "POST",
-			headers: {
-				"Authorization": 'Bearer ' + loginManager.accessToken
-			}
 		});
 	}
 
@@ -76,11 +61,8 @@ export default class Player {
 	}
 
 	async _nowPlaying() {
-		const response = await fetch('https://api.spotify.com/v1/me/player/currently-playing', {
+		const response = await this._client.fetch('me/player/currently-playing', {
 			method: "GET",
-			headers: {
-				"Authorization": 'Bearer ' + loginManager.accessToken
-			}
 		});
 		if (response.status != 200) {
 			return null;
@@ -100,3 +82,4 @@ export default class Player {
 		}, s2ms * this._pollRate);
 	}
 }
+
