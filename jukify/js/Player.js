@@ -1,3 +1,6 @@
+/**
+* Controls the Spotify player.
+*/
 export default class Player {
 
 	constructor(client, pollRate = 1) {
