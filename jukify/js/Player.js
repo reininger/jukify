@@ -26,9 +26,7 @@ export default class Player {
 	}
 
 	async isPlaying() {
-		const response = await this._client.fetch('me/player', {
-			method: "GET",
-		});
+		const response = await this._client.fetch('me/player');
 		if (response.status == 204) {
 			return false;
 		}
@@ -61,9 +59,7 @@ export default class Player {
 	}
 
 	async _nowPlaying() {
-		const response = await this._client.fetch('me/player/currently-playing', {
-			method: "GET",
-		});
+		const response = await this._client.fetch('me/player/currently-playing');
 		if (response.status != 200) {
 			return null;
 		}

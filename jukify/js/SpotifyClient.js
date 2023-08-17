@@ -13,6 +13,7 @@ export default class SpotifyClient {
 	}
 
 	fetch(path, options) {
+		options = options ?? {};
 		const url = this._baseUrl + path;
 		options.headers = {
 			...options.headers,
