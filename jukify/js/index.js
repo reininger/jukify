@@ -65,7 +65,4 @@ window.onload = async () => {
 		});
 
     setPlayPauseButton();
-
-    //const nextButtons = document.getElementsByClassName("next-btn");
-    //nextButtons[0].onclick = () => window.player.next()
 };
