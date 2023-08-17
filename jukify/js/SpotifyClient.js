@@ -4,7 +4,7 @@
 
 const defaultBaseUrl = "https://api.spotify.com/v1";
 
-class SpotifyHttpClient {
+export default class SpotifyHttpClient {
 
 	constructor(fetch, loginManager, baseUrl = defaultBaseUrl) {
 		this._fetch = fetch;
