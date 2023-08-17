@@ -19,7 +19,7 @@ export default class SpotifyClient {
 			...options.headers,
 			Authorization: "Bearer " + this._loginManager.accessToken
 		}
-		return window.fetch(url, options);
+		return this._fetch(url, options);
 	}
-	
 }
+

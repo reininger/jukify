@@ -8,7 +8,7 @@ import SpotifyClient from "./SpotifyClient.js";
 
 window.onload = async () => {
     window.loginManager = new LoginManager();
-		window.spotifyClient = new SpotifyClient(window.fetch, window.loginManager);
+		window.spotifyClient = new SpotifyClient((...args) => window.fetch(...args), window.loginManager);
     window.player = new Player(window.spotifyClient);
     
     const pauseButton = document.getElementById("pause");
