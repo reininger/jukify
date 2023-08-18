@@ -6,7 +6,6 @@ import Player from './Player.js'
 import LoginManager from './SpotifyImplicitGrantLoginManager.js'
 import SpotifyClient from './SpotifyClient.js'
 import Search from './Search.js'
-
 window.onload = async () => {
   window.loginManager = new LoginManager()
   window.spotifyClient = new SpotifyClient((...args) => window.fetch(...args), window.loginManager)
@@ -104,18 +103,22 @@ window.onload = async () => {
 		searchTab.classList.add("active");
 		searchContent.classList.add("active");
 		searchContent.classList.add("show");
+		searchContent.classList.remove("d-none");
 		playlistTab.classList.remove("active");
 		playlistContent.classList.remove("active");
 		playlistContent.classList.remove("show");
+		playlistContent.classList.add("d-none");
 	}
 
 	playlistTab.onclick = () => {
 		playlistTab.classList.add("active");
 		playlistContent.classList.add("active");
 		playlistContent.classList.add("show");
+		playlistContent.classList.remove("d-none");
 		searchTab.classList.remove("active");
 		searchContent.classList.remove("active");
 		searchContent.classList.remove("show");
+		searchContent.classList.add("d-none");
 	}
 
   setPlayPauseButton()

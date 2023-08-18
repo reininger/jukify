@@ -34,8 +34,7 @@
 	<main class="overflow-hidden flex-grow-1 d-flex flex-column justify-content-between p-1">
 
 		<div class="flex-grow-1 tab-content d-flex flex-column overflow-hidden" id="myTabContent">
-			<div class="tab-pane flex-grow-1 fade show active d-flex flex-column
-			overflow-hidden" id="searchContent" role="tabpanel"
+			<div class="tab-pane flex-grow-1 fade show active d-flex flex-column overflow-hidden" id="searchContent" role="tabpanel"
 				aria-labelledby="home-tab">
 				<div class="input-group mb-1">
 					<input type="text" class="form-control" placeholder="Search" aria-label="Search"
@@ -55,7 +54,16 @@
 				</ul>
 			</div>
 
-			<div class="tab-pane fade" id="playlistContent" role="tabpanel" aria-labelledby="profile-tab">Playlist Tab Content
+			<div class="tab-pane fade flex-grow-1 d-flex flex-column overflow-hidden
+			d-none" id="playlistContent" role="tabpanel" aria-labelledby="profile-tab">
+				<div class="input-group mb-1">
+					<input type="text" class="form-control" placeholder="Playlist Title"
+						id="playlistTitle"
+					>
+				</div>
+				<ul class="p-0 m-0 flex-shrink-1 overflow-scroll" id="playlistTracks">
+					<li>Playlist content</li>
+				</ul>
 			</div>
 		</div>
 
