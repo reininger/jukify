@@ -22,6 +22,10 @@ window.onload = async () => {
   const searchBar = document.querySelector('#searchBar')
   const searchButton = document.querySelector('#searchButton')
   const searchResults = document.querySelector('#searchResults')
+	const searchContent = document.querySelector('#searchContent')
+	const searchTab = document.querySelector('#searchTab')
+	const playlistContent = document.querySelector('#playlistContent')
+	const playlistTab = document.querySelector('#playlistTab')
 
   let result
   try {
@@ -95,6 +99,24 @@ window.onload = async () => {
     `)
     searchResults.innerHTML = resultListItems.join('')
   }
+
+	searchTab.onclick = () => {
+		searchTab.classList.add("active");
+		searchContent.classList.add("active");
+		searchContent.classList.add("show");
+		playlistTab.classList.remove("active");
+		playlistContent.classList.remove("active");
+		playlistContent.classList.remove("show");
+	}
+
+	playlistTab.onclick = () => {
+		playlistTab.classList.add("active");
+		playlistContent.classList.add("active");
+		playlistContent.classList.add("show");
+		searchTab.classList.remove("active");
+		searchContent.classList.remove("active");
+		searchContent.classList.remove("show");
+	}
 
   setPlayPauseButton()
 }
