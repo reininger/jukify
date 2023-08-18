@@ -25,6 +25,7 @@ window.onload = async () => {
 	const searchTab = document.querySelector('#searchTab')
 	const playlistContent = document.querySelector('#playlistContent')
 	const playlistTab = document.querySelector('#playlistTab')
+	const playlistTracks = document.querySelector('#playlistTracks');
 
   let result
   try {
@@ -89,14 +90,38 @@ window.onload = async () => {
     })
     const resultListItems = tracks.map(x => `
     <li class="p-0 list-group-item d-flex align-items-end border rounded-end"
-      id="${x.id}"
+      data-id="${x.id}" data-image="${x.image}" data-name="${x.name}"
+			data-artist="${x.artist}" data-album="${x.album}"
     >
       <img height="64" width="64" class="me-2" src="${x.image}">
       <h6 class="m-0 flex-grow-1">${x.name} by ${x.artist} - ${x.album}</h6>
-			<button class="btn btn-success align-self-stretch rounded-0 rounded-end">+</button>
+			<button class="btn btn-success align-self-stretch rounded-0 rounded-end"
+				onclick=""
+			>+</button>
     </li>
     `)
     searchResults.innerHTML = resultListItems.join('')
+
+		Array.from(searchResults.children).forEach(x => {
+			const data = {
+				id: x.getAttribute('data-id'),
+				image: x.getAttribute('data-image'),
+				name: x.getAttribute('data-name'),
+				artist: x.getAttribute('data-artist'),
+				album: x.getAttribute('data-album'),
+			}
+			x.onclick = () => { playlistTracks.innerHTML += `
+				<li class="p-0 list-group-item d-flex align-items-end border rounded-end"
+					id="${data.id}"
+				>
+					<img height="64" width="64" class="me-2" src="${data.image}">
+					<h6 class="m-0 flex-grow-1">${data.name} by ${data.artist} -
+					${data.album}</h6>
+					<button class="btn btn-danger align-self-stretch rounded-0 rounded-end">-</button>
+				</li>
+				`
+			}
+		})
   }
 
 	searchTab.onclick = () => {
