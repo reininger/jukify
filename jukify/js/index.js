@@ -85,11 +85,12 @@ window.onload = async () => {
       }
     })
     const resultListItems = tracks.map(x => `
-    <li class="p-0 list-group-item d-flex align-items-end border"
-    id="${x.id}"
+    <li class="p-0 list-group-item d-flex align-items-end border rounded-end"
+      id="${x.id}"
     >
-    <img height="64" width="64" class="me-2" src="${x.image}">
-    <h6 class="m-0">${x.name} by ${x.artist} - ${x.album}</h6>
+      <img height="64" width="64" class="me-2" src="${x.image}">
+      <h6 class="m-0 flex-grow-1">${x.name} by ${x.artist} - ${x.album}</h6>
+			<button class="btn btn-success align-self-stretch rounded-0 rounded-end">+</button>
     </li>
     `)
     searchResults.innerHTML = resultListItems.join('')
