@@ -146,5 +146,12 @@ window.onload = async () => {
 		searchContent.classList.add("d-none");
 	}
 
+	searchBar.addEventListener("keypress", e => {
+		if (e.key == "Enter") {
+			e.preventDefault();
+			searchButton.click();
+		}
+	})
+
   setPlayPauseButton()
 }
