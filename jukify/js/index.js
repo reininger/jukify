@@ -19,13 +19,14 @@ window.onload = async () => {
   const skipNextButton = document.querySelector('#skip-next')
   const currentlyPlaying = document.querySelector('.currently-playing')
   const searchBar = document.querySelector('#searchBar')
+  const searchClearButton = document.querySelector('#searchClearButton')
   const searchButton = document.querySelector('#searchButton')
   const searchResults = document.querySelector('#searchResults')
-	const searchContent = document.querySelector('#searchContent')
-	const searchTab = document.querySelector('#searchTab')
-	const playlistContent = document.querySelector('#playlistContent')
-	const playlistTab = document.querySelector('#playlistTab')
-	const playlistTracks = document.querySelector('#playlistTracks');
+  const searchContent = document.querySelector('#searchContent')
+  const searchTab = document.querySelector('#searchTab')
+  const playlistContent = document.querySelector('#playlistContent')
+  const playlistTab = document.querySelector('#playlistTab')
+  const playlistTracks = document.querySelector('#playlistTracks')
 
   let result
   try {
@@ -102,15 +103,16 @@ window.onload = async () => {
     `)
     searchResults.innerHTML = resultListItems.join('')
 
-		Array.from(searchResults.children).forEach(x => {
-			const data = {
-				id: x.getAttribute('data-id'),
-				image: x.getAttribute('data-image'),
-				name: x.getAttribute('data-name'),
-				artist: x.getAttribute('data-artist'),
-				album: x.getAttribute('data-album'),
-			}
-			x.onclick = () => { playlistTracks.innerHTML += `
+    Array.from(searchResults.children).forEach(x => {
+      const data = {
+        id: x.getAttribute('data-id'),
+        image: x.getAttribute('data-image'),
+        name: x.getAttribute('data-name'),
+        artist: x.getAttribute('data-artist'),
+        album: x.getAttribute('data-album')
+      }
+      x.onclick = () => {
+        playlistTracks.innerHTML += `
 				<li class="p-0 list-group-item d-flex align-items-end border rounded-end"
 					id="${data.id}"
 				>
@@ -120,38 +122,56 @@ window.onload = async () => {
 					<button class="btn btn-danger align-self-stretch rounded-0 rounded-end">-</button>
 				</li>
 				`
-			}
-		})
+      }
+    })
   }
 
-	searchTab.onclick = () => {
-		searchTab.classList.add("active");
-		searchContent.classList.add("active");
-		searchContent.classList.add("show");
-		searchContent.classList.remove("d-none");
-		playlistTab.classList.remove("active");
-		playlistContent.classList.remove("active");
-		playlistContent.classList.remove("show");
-		playlistContent.classList.add("d-none");
-	}
+  searchTab.onclick = () => {
+    searchTab.classList.add('active')
+    searchContent.classList.add('active')
+    searchContent.classList.add('show')
+    searchContent.classList.remove('d-none')
+    playlistTab.classList.remove('active')
+    playlistContent.classList.remove('active')
+    playlistContent.classList.remove('show')
+    playlistContent.classList.add('d-none')
+  }
 
-	playlistTab.onclick = () => {
-		playlistTab.classList.add("active");
-		playlistContent.classList.add("active");
-		playlistContent.classList.add("show");
-		playlistContent.classList.remove("d-none");
-		searchTab.classList.remove("active");
-		searchContent.classList.remove("active");
-		searchContent.classList.remove("show");
-		searchContent.classList.add("d-none");
-	}
+  playlistTab.onclick = () => {
+    playlistTab.classList.add('active')
+    playlistContent.classList.add('active')
+    playlistContent.classList.add('show')
+    playlistContent.classList.remove('d-none')
+    searchTab.classList.remove('active')
+    searchContent.classList.remove('active')
+    searchContent.classList.remove('show')
+    searchContent.classList.add('d-none')
+  }
 
-	searchBar.addEventListener("keypress", e => {
-		if (e.key == "Enter") {
-			e.preventDefault();
-			searchButton.click();
-		}
-	})
+  searchBar.addEventListener('keypress', e => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      searchButton.click()
+    }
+  })
+
+  const handleSearchBarChange = (e) => {
+    if (searchBar.value !== '' && searchBar.value !== null) {
+      searchClearButton.classList.remove('d-none')
+    } else {
+      searchClearButton.classList.add('d-none')
+    }
+  }
+
+  searchBar.addEventListener('input', handleSearchBarChange)
+  searchBar.addEventListener('change', handleSearchBarChange)
+  searchBar.addEventListener('keypress', handleSearchBarChange)
+  searchBar.addEventListener('paste', handleSearchBarChange)
+
+  searchClearButton.addEventListener('click', (e) => {
+    searchBar.value = ''
+    searchClearButton.classList.add('d-none')
+  })
 
   setPlayPauseButton()
 }
