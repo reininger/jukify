@@ -15,6 +15,7 @@ window.onload = async () => {
   const pauseButton = document.getElementById('pause')
   const playButton = document.getElementById('play')
   const nameNode = document.querySelector('header h4')
+  const profileImagePlaceHolder = document.querySelector('header svg')
   const skipPreviousButton = document.querySelector('#skip-previous')
   const skipNextButton = document.querySelector('#skip-next')
   const currentlyPlaying = document.querySelector('.currently-playing')
@@ -39,7 +40,12 @@ window.onload = async () => {
     // redirect to login page
     window.location = 'html/login.html'
   }
+
   nameNode.innerHTML = window.loginManager.user.display_name
+  const profileImage = document.createElement('img')
+  profileImage.setAttribute('src', window.loginManager.user.images[0].url)
+  profileImage.classList.add('rounded-circle', 'm-2')
+  profileImagePlaceHolder.replaceWith(profileImage)
 
   const setPlayPauseButton = async () => {
     const playing = await window.player.isPlaying()

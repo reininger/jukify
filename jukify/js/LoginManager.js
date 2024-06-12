@@ -39,11 +39,12 @@ export default class LoginManager {
       }
     })
     const json = await response.json()
-    const { display_name: displayName } = json
+    const { display_name: displayName, images } = json
 
     this.user = {
       userName: displayName,
-      accessToken
+      accessToken,
+      images
     }
 
     return true
