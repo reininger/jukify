@@ -182,6 +182,7 @@ window.onload = async () => {
 
   logoutButton.addEventListener('click', () => {
     window.loginManager.logout()
+    window.location = 'html/login.html'
   })
 
   setPlayPauseButton()
