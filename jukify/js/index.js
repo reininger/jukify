@@ -28,6 +28,7 @@ window.onload = async () => {
   const playlistContent = document.querySelector('#playlistContent')
   const playlistTab = document.querySelector('#playlistTab')
   const playlistTracks = document.querySelector('#playlistTracks')
+  const logoutButton = document.querySelector('.logout-button')
 
   let result
   try {
@@ -177,6 +178,10 @@ window.onload = async () => {
   searchClearButton.addEventListener('click', (e) => {
     searchBar.value = ''
     searchClearButton.classList.add('d-none')
+  })
+
+  logoutButton.addEventListener('click', () => {
+    window.loginManager.logout()
   })
 
   setPlayPauseButton()

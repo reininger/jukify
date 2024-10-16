@@ -52,6 +52,7 @@ export default class SpotifyImplicitGrantSigninManager {
     this.user = null
     this.accessToken = null
     this.accessTokenExpirationTime = null
+    window.location = 'html/login.html'
   }
 
   /**
