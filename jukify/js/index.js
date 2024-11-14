@@ -44,7 +44,11 @@ window.onload = async () => {
 
   nameNode.innerHTML = window.loginManager.user.display_name
   const profileImage = document.createElement('img')
-  profileImage.setAttribute('src', window.loginManager.user.images[0].url)
+  profileImage.setAttribute(
+    'src',
+    window.loginManager.user.images.find(image => image.height === 64)
+      .url
+  )
   profileImage.classList.add('rounded-circle', 'm-2')
   profileImagePlaceHolder.replaceWith(profileImage)
 
