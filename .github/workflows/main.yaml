@@ -12,5 +12,5 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: npm install --global surge
-      - run: surge ./jukify jukify.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+      - run: surge ./jukify jukify.reidreininger.com --token ${{ secrets.SURGE_TOKEN }}
 
