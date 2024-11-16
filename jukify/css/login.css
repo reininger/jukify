@@ -1,0 +1,26 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('/img/jukebox.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body > div {
+    border: 10px solid black;
+    min-width: 230px;
+    background-color: white;
+}
+
+svg, svg * {
+    background-color: var(--bs-btn-bg);
+    fill: var(--bs-btn-color);
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out
+}
+
+*:hover > svg {
+    background-color: var(--bs-btn-hover-bg);
+}
