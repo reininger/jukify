@@ -23,12 +23,12 @@ export default class SpotifyImplicitGrantSigninManager {
     if ([
       this.accessToken === null,
       this.accessTokenExpirationTime === null,
-      this.IsExpired()
+      this.isExpired()
     ].some(x => x)) {
       return false
     }
 
-    const response = await this.GetSpotifyUserProfile()
+    const response = await this.getSpotifyUserProfile()
 
     if (response.status === 401) {
       return false
@@ -67,7 +67,7 @@ export default class SpotifyImplicitGrantSigninManager {
   *
   * Returns a Response object.
   */
-  async GetSpotifyUserProfile() {
+  async getSpotifyUserProfile() {
     const url = 'https://api.spotify.com/v1/me'
     const response = await fetch(url, {
       method: 'GET',
@@ -78,7 +78,7 @@ export default class SpotifyImplicitGrantSigninManager {
     return response
   }
 
-  IsExpired() {
+  isExpired() {
 
   }
 }

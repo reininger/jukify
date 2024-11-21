@@ -4,7 +4,7 @@ import SpotifyImplicitGrantSigninManager from "../jukify/js/SpotifyImplicitGrant
 test('Returns false on 401 unauthorized', async () => {
 	const signinManager = new SpotifyImplicitGrantSigninManager();
     signinManager.updateAuthenticationArguments = () => null;
-    signinManager.GetSpotifyUserProfile = async () => {
+    signinManager.getSpotifyUserProfile = async () => {
         const unauthorizedResponse = new Response(null, {
             status: 401,
             statusText: 'Unauthorized'
@@ -24,7 +24,7 @@ test('Tests throws an exception on non-401 error statuses', async () => {
         signinManager.accessToken = 'someRandomAccessToken1';
         signinManager.accessTokenExpirationTime = '1';
     }
-    signinManager.GetSpotifyUserProfile = async () => {
+    signinManager.getSpotifyUserProfile = async () => {
         const unauthorizedResponse = new Response(null, {
             status: 403,
             statusText: 'Forbidden'
@@ -45,7 +45,7 @@ test('Tests returns true on 200 response', async () => {
         signinManager.accessTokenExpirationTime = '1'
     }
 
-    signinManager.GetSpotifyUserProfile = async () => {
+    signinManager.getSpotifyUserProfile = async () => {
         const authorizedResponse = new Response(JSON.stringify({}), {
             status: 200,
             statusText: 'Ok'
@@ -64,7 +64,7 @@ test('Does not call GetSpotifyUserProfile when accessToken is null', async () =>
     signinManager.updateAuthenticationArguments = () => {
         signinManager.accessToken = null;
     }
-    signinManager.GetSpotifyUserProfile = async () => {
+    signinManager.getSpotifyUserProfile = async () => {
         calledGetSpotifyUserProfile = true;
     }
 
@@ -79,7 +79,7 @@ test('Does not call GetSpotifyUserProfile when accessTokenExpirationTime is null
         signinManager.accessTokenExpirationTime = null;
         signinManager.accessToken = 'invalid'
     }
-    signinManager.GetSpotifyUserProfile = async () => {
+    signinManager.getSpotifyUserProfile = async () => {
         calledGetSpotifyUserProfile = true;
     }
 
@@ -95,9 +95,9 @@ test('Tests does not call GetSpotifyUserProfile when accessTokenExpirationTime i
         signinManager.accessToken = 'invalid'
     }
 
-    signinManager.IsExpired = () => true;
+    signinManager.isExpired = () => true;
 
-    signinManager.GetSpotifyUserProfile = async () => {
+    signinManager.getSpotifyUserProfile = async () => {
         calledGetSpotifyUserProfile = true;
     }
 
@@ -112,7 +112,7 @@ test('Tests user is set on successful spotify api call', async () => {
         signinManager.accessTokenExpirationTime = '1'
     }
 
-    signinManager.GetSpotifyUserProfile = async () => {
+    signinManager.getSpotifyUserProfile = async () => {
         const authorizedResponse = new Response(JSON.stringify({
             email: "test@email.com"
         }), {
@@ -134,7 +134,7 @@ test('Tests user is null after failed login', async () => {
         signinManager.accessToken = 'someRandomAccessToken1';
         signinManager.accessTokenExpirationTime = '1';
     }
-    signinManager.GetSpotifyUserProfile = async () => {
+    signinManager.getSpotifyUserProfile = async () => {
         const unauthorizedResponse = new Response(null, {
             status: 401,
             statusText: 'Unauthorized'
@@ -156,7 +156,7 @@ test('Tests throws exception on login if a user is already logged in', async () 
         signinManager.accessToken = 'someRandomAccessToken1';
         signinManager.accessTokenExpirationTime = '1';
     }
-    signinManager.GetSpotifyUserProfile = () => {
+    signinManager.getSpotifyUserProfile = () => {
         const authorizedResponse = new Response(JSON.stringify({}), {
             status: 200,
             statusText: 'Ok'
