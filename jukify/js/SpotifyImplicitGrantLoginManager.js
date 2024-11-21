@@ -20,11 +20,7 @@ export default class SpotifyImplicitGrantSigninManager {
     }
 
     this.updateAuthenticationArguments()
-    if ([
-      this.accessToken === null,
-      this.accessTokenExpirationTime === null,
-      this.isExpired()
-    ].some(x => x)) {
+    if (this.isInvalidAuthenticationArguments()) {
       return false
     }
 
@@ -77,7 +73,9 @@ export default class SpotifyImplicitGrantSigninManager {
     return response
   }
 
-  isExpired() {
-
+  isInvalidAuthenticationArguments() {
+    const isExpired = this.accessToken === null
+      || this.accessTokenExpirationTime === null
+    return isExpired
   }
 }
