@@ -7,3 +7,23 @@ footer .nav .nav-item {
 	--bs-nav-pills-border-radius: 0;
 }
 
+@keyframes record-spin {
+	from {
+		transform: rotateY(0);
+	}
+	
+	to {
+		transform: rotateY(1turn);
+	}
+}
+
+.loading-record:not(.active) {
+	display: none;
+}
+
+.loading-record.active {
+	animation-name: record-spin;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
