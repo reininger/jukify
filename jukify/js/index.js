@@ -29,6 +29,7 @@ window.onload = async () => {
   const playlistTab = document.querySelector('#playlistTab')
   const playlistTracks = document.querySelector('#playlistTracks')
   const logoutButton = document.querySelector('.logout-button')
+  const throbber = document.querySelector('.loading-record')
 
   let result
   try {
@@ -90,6 +91,7 @@ window.onload = async () => {
 
   searchButton.onclick = async () => {
     const query = searchBar.value
+    throbber.classList.add('active')
     const { tracks: { items } } = await window.search.search(query, 'track')
     const tracks = items.map(x => {
       return {
@@ -135,6 +137,7 @@ window.onload = async () => {
 				`
       }
     })
+    throbber.classList.remove('active')
   }
 
   searchTab.onclick = () => {
