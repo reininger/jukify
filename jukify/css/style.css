@@ -17,10 +17,6 @@ footer .nav .nav-item {
 	}
 }
 
-.loading-record:not(.active) {
-	display: none;
-}
-
 .loading-record.active {
 	animation-name: record-spin;
 	animation-duration: 2s;
