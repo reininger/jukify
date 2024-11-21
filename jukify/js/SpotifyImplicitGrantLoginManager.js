@@ -19,7 +19,7 @@ export default class SpotifyImplicitGrantSigninManager {
       throw new Error('Cannot call login when a user is already logged in')
     }
 
-    this.UpdateAuthenticationArguments()
+    this.updateAuthenticationArguments()
     if ([
       this.accessToken === null,
       this.accessTokenExpirationTime === null,
@@ -56,7 +56,7 @@ export default class SpotifyImplicitGrantSigninManager {
   /**
   * Sets access token and expiration time.
   */
-  UpdateAuthenticationArguments() {
+  updateAuthenticationArguments() {
     const urlParams = new URLSearchParams(window.location.hash.substr(1))
     this.accessToken = urlParams.get('access_token')
     this.accessTokenExpirationTime = urlParams.get('expires_in') * 1000 + Date.now()

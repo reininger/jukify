@@ -3,7 +3,7 @@ import SpotifyImplicitGrantSigninManager from "../jukify/js/SpotifyImplicitGrant
 
 test('Returns false on 401 unauthorized', async () => {
 	const signinManager = new SpotifyImplicitGrantSigninManager();
-    signinManager.UpdateAuthenticationArguments = () => null;
+    signinManager.updateAuthenticationArguments = () => null;
     signinManager.GetSpotifyUserProfile = async () => {
         const unauthorizedResponse = new Response(null, {
             status: 401,
@@ -20,7 +20,7 @@ test('Returns false on 401 unauthorized', async () => {
 
 test('Tests throws an exception on non-401 error statuses', async () => {
 	const signinManager = new SpotifyImplicitGrantSigninManager();
-    signinManager.UpdateAuthenticationArguments = () => {
+    signinManager.updateAuthenticationArguments = () => {
         signinManager.accessToken = 'someRandomAccessToken1';
         signinManager.accessTokenExpirationTime = '1';
     }
@@ -40,7 +40,7 @@ test('Tests throws an exception on non-401 error statuses', async () => {
 
 test('Tests returns true on 200 response', async () => {
     const signinManager = new SpotifyImplicitGrantSigninManager();
-    signinManager.UpdateAuthenticationArguments = () => {
+    signinManager.updateAuthenticationArguments = () => {
         signinManager.accessToken = 'valid'
         signinManager.accessTokenExpirationTime = '1'
     }
@@ -61,7 +61,7 @@ test('Tests returns true on 200 response', async () => {
 test('Does not call GetSpotifyUserProfile when accessToken is null', async () => {
     const signinManager = new SpotifyImplicitGrantSigninManager();
     let calledGetSpotifyUserProfile = false;
-    signinManager.UpdateAuthenticationArguments = () => {
+    signinManager.updateAuthenticationArguments = () => {
         signinManager.accessToken = null;
     }
     signinManager.GetSpotifyUserProfile = async () => {
@@ -75,7 +75,7 @@ test('Does not call GetSpotifyUserProfile when accessToken is null', async () =>
 test('Does not call GetSpotifyUserProfile when accessTokenExpirationTime is null', async () => {
     const signinManager = new SpotifyImplicitGrantSigninManager();
     let calledGetSpotifyUserProfile = false;
-    signinManager.UpdateAuthenticationArguments = () => {
+    signinManager.updateAuthenticationArguments = () => {
         signinManager.accessTokenExpirationTime = null;
         signinManager.accessToken = 'invalid'
     }
@@ -90,7 +90,7 @@ test('Does not call GetSpotifyUserProfile when accessTokenExpirationTime is null
 test('Tests does not call GetSpotifyUserProfile when accessTokenExpirationTime is expired', async () => {
     const signinManager = new SpotifyImplicitGrantSigninManager();
     let calledGetSpotifyUserProfile = false;
-    signinManager.UpdateAuthenticationArguments = () => {
+    signinManager.updateAuthenticationArguments = () => {
         signinManager.accessTokenExpirationTime = 1;
         signinManager.accessToken = 'invalid'
     }
@@ -107,7 +107,7 @@ test('Tests does not call GetSpotifyUserProfile when accessTokenExpirationTime i
 
 test('Tests user is set on successful spotify api call', async () => {
     const signinManager = new SpotifyImplicitGrantSigninManager();
-    signinManager.UpdateAuthenticationArguments = () => {
+    signinManager.updateAuthenticationArguments = () => {
         signinManager.accessToken = 'valid'
         signinManager.accessTokenExpirationTime = '1'
     }
@@ -130,7 +130,7 @@ test('Tests user is set on successful spotify api call', async () => {
 test('Tests user is null after failed login', async () => {
 	const signinManager = new SpotifyImplicitGrantSigninManager();
     signinManager.user = { email: "test@email.com" };
-    signinManager.UpdateAuthenticationArguments = () => {
+    signinManager.updateAuthenticationArguments = () => {
         signinManager.accessToken = 'someRandomAccessToken1';
         signinManager.accessTokenExpirationTime = '1';
     }
@@ -152,7 +152,7 @@ test('Tests user is null after failed login', async () => {
 test('Tests throws exception on login if a user is already logged in', async () => {
 	const signinManager = new SpotifyImplicitGrantSigninManager();
     signinManager.user = { email: "test@email.com" };
-    signinManager.UpdateAuthenticationArguments = () => {
+    signinManager.updateAuthenticationArguments = () => {
         signinManager.accessToken = 'someRandomAccessToken1';
         signinManager.accessTokenExpirationTime = '1';
     }
