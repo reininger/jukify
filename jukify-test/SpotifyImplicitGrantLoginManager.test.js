@@ -95,7 +95,7 @@ test('Tests does not call GetSpotifyUserProfile when accessTokenExpirationTime i
         signinManager.accessToken = 'invalid'
     }
 
-    signinManager.isExpired = () => true;
+    signinManager.isInvalidAuthenticationArguments = () => true;
 
     signinManager.getSpotifyUserProfile = async () => {
         calledGetSpotifyUserProfile = true;
