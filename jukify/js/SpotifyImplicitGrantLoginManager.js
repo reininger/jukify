@@ -29,7 +29,6 @@ export default class SpotifyImplicitGrantSigninManager {
     }
 
     const response = await this.getSpotifyUserProfile()
-
     if (response.status === 401) {
       return false
     }
