@@ -132,7 +132,7 @@ window.onload = async () => {
 					<img height="64" width="64" class="me-2" src="${data.image}">
 					<h6 class="m-0 flex-grow-1">${data.name} by ${data.artist} -
 					${data.album}</h6>
-					<button class="btn btn-danger align-self-stretch rounded-0 rounded-end">-</button>
+					<button class="btn btn-danger align-self-stretch rounded-0 rounded-end" onclick="this.parentNode.parentNode.removeChild(parentNode)">-</button>
 				</li>
 				`
       }
