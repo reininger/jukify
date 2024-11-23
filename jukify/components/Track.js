@@ -26,13 +26,16 @@ export default class Track extends HTMLElement {
         this.appendChild(heading)
 
         const removeButton = document.createElement('button')
+        removeButton.textContent = '-'
         removeButton.classList.add(
             "btn", "btn-danger", "align-self-stretch", "rounded-0",
             "rounded-end"
         )
-
+        
         removeButton.addEventListener('click', (e) => {
             this.remove()
         })
+
+        this.appendChild(removeButton)
     }
 }
