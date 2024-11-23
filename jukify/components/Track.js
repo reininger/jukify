@@ -1,4 +1,4 @@
-export default class Track extends HTMLLIElement {
+export default class Track extends HTMLElement {
     static type = 'spotify-track'
 
     connectedCallback() {

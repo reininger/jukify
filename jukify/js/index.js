@@ -8,7 +8,7 @@ import SpotifyClient from './SpotifyClient.js'
 import Search from './Search.js'
 import Track from '../components/Track.js'
 
-window.customElements.define(Track.type, Track, { extends: "li" })
+window.customElements.define(Track.type, Track)
 
 window.onload = async () => {
   window.loginManager = new LoginManager()
@@ -129,7 +129,7 @@ window.onload = async () => {
         album: x.getAttribute('data-album')
       }
       x.onclick = () => {
-        const trackNode = document.createElement('li', { is: Track.type })
+        const trackNode = document.createElement(Track.type)
         trackNode.dataset.id = data.id
         trackNode.dataset.image = data.image
         trackNode.dataset.name = data.name
