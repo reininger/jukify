@@ -6,6 +6,10 @@ import Player from './Player.js'
 import LoginManager from './SpotifyImplicitGrantLoginManager.js'
 import SpotifyClient from './SpotifyClient.js'
 import Search from './Search.js'
+import Track from '../components/Track.js'
+
+window.customElements.define(Track.type, Track, { extends: "li" })
+
 window.onload = async () => {
   window.loginManager = new LoginManager()
   window.spotifyClient = new SpotifyClient((...args) => window.fetch(...args), window.loginManager)
@@ -125,16 +129,13 @@ window.onload = async () => {
         album: x.getAttribute('data-album')
       }
       x.onclick = () => {
-        playlistTracks.innerHTML += `
-				<li class="p-0 list-group-item d-flex align-items-end border rounded-end"
-					id="${data.id}"
-				>
-					<img height="64" width="64" class="me-2" src="${data.image}">
-					<h6 class="m-0 flex-grow-1">${data.name} by ${data.artist} -
-					${data.album}</h6>
-					<button class="btn btn-danger align-self-stretch rounded-0 rounded-end" onclick="this.parentNode.parentNode.removeChild(parentNode)">-</button>
-				</li>
-				`
+        const trackNode = document.createElement('li', { is: Track.type })
+        trackNode.dataset.id = data.id
+        trackNode.dataset.image = data.image
+        trackNode.dataset.name = data.name
+        trackNode.dataset.artist = data.artist
+        trackNode.dataset.album = data.album
+        playlistTracks.appendChild(trackNode)
       }
     })
     throbber.classList.remove('active')
